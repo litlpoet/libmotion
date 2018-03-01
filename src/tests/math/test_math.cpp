@@ -58,3 +58,11 @@ TEST_CASE("Matrix initialization test", "[matrix]")
   REQUIRE(M == M_test);
   // clang-format on
 }
+
+TEST_CASE("Matrix initialization test2", "[matrix]")
+{
+  auto const         M1   = (math::Mat3x3() << 1, 2, 3, 4, 5, 6, 7, 8, 9).finished();
+  auto const         elem = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+  math::Mat3x3 const M2(elem.begin());  // column-major
+  REQUIRE(M1 == M2.transpose());
+}
